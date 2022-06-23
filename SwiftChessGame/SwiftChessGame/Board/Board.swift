@@ -64,8 +64,8 @@ final class Board {
     
     private func setBlackPieces() {
         var blackPawnRow: [ChessPiece?] = []
-        for file in 0..<8 {
-            guard let location = Location(col: file, row: 1) else { continue }
+        for rank in 0..<8 {
+            guard let location = Location(col: 1, row: rank) else { continue }
             blackPawnRow.append(ChessPieceFactory.create(teamColor: .black, location: location, pieceType: .pawn))
         }
         current[1] = blackPawnRow
@@ -84,8 +84,8 @@ final class Board {
     
     private func setWhitePieces() {
         var whitePwanRow: [ChessPiece?] = []
-        for file in 0..<8 {
-            guard let location = Location(col: file, row: 6) else { continue }
+        for rank in 0..<8 {
+            guard let location = Location(col: 6, row: rank) else { continue }
             whitePwanRow.append(ChessPieceFactory.create(teamColor: .white, location: location, pieceType: .pawn))
         }
         current[6] = whitePwanRow

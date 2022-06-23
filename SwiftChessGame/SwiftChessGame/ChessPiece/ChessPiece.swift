@@ -76,7 +76,7 @@ protocol ChessPiece {
     var currentLocation: Location { get set }
     var pieceType: PieceType { get }
     
-    init(teamColor: TeamColor, currentLocation: Location)
+    init?(teamColor: TeamColor, at: Location?)
 }
 
 extension ChessPiece {
@@ -99,6 +99,47 @@ extension ChessPiece {
             moveableLocation += getAvailablePawnMove(location: currentLocation, color: teamColor)
         }
         return Array(Set(moveableLocation))
+    }
+    
+    func createAvailable() -> Bool {
+        var returnValue: Bool
+        switch pieceType {
+        case .queen:
+            if teamColor == .black {
+                returnValue = currentLocation.string == "E1"
+            } else {
+                returnValue = currentLocation.string == "E8"
+            }
+        case .rook:
+            if teamColor == .black {
+                returnValue = currentLocation.string == "A1" || currentLocation.string == "H1"
+            } else {
+                returnValue = currentLocation.string == "A8" || currentLocation.string == "H8"
+            }
+        case .knight:
+            if teamColor == .black {
+                returnValue = currentLocation.string == "B1" || currentLocation.string == "G1"
+            } else {
+                returnValue = currentLocation.string == "B8" || currentLocation.string == "G8"
+            }
+        case .bishop:
+            if teamColor == .black {
+                returnValue = currentLocation.string == "C1" || currentLocation.string == "F1"
+            } else {
+                returnValue = currentLocation.string == "C8" || currentLocation.string == "F8"
+            }
+        case .pawn:
+            if teamColor == .black {
+                returnValue = currentLocation.file == 2 && Array(0...7).contains(currentLocation.rank)
+            } else {
+                returnValue = currentLocation.file == 7 && Array(0...7).contains(currentLocation.rank)
+            }
+        }
+        
+        if returnValue == false {
+            print(currentLocation.string)
+        }
+        return returnValue
     }
     
     private func getAvailableDiagonalMove(location: Location) -> [Location] {
@@ -163,18 +204,18 @@ extension ChessPiece {
 }
 
 struct ChessPieceFactory {
-    static func create(teamColor: TeamColor, location: Location, pieceType: PieceType) -> ChessPiece {
+    static func create(teamColor: TeamColor, location: Location?, pieceType: PieceType) -> ChessPiece? {
         switch pieceType {
         case .queen:
-            return Queen(teamColor: teamColor, currentLocation: location)
+            return Queen(teamColor: teamColor, at: location)
         case .rook:
-            return Rook(teamColor: teamColor, currentLocation: location)
+            return Rook(teamColor: teamColor, at: location)
         case .bishop:
-            return Bishop(teamColor: teamColor, currentLocation: location)
+            return Bishop(teamColor: teamColor, at: location)
         case .knight:
-            return Knight(teamColor: teamColor, currentLocation: location)
+            return Knight(teamColor: teamColor, at: location)
         case .pawn:
-            return Pawn(teamColor: teamColor, currentLocation: location)
+            return Pawn(teamColor: teamColor, at: location)
         }
     }
 }

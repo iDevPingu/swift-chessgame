@@ -12,8 +12,14 @@ final class Rook: ChessPiece {
     var currentLocation: Location
     let pieceType: PieceType = .rook
     
-    init(teamColor: TeamColor, currentLocation: Location) {
+    init?(teamColor: TeamColor, at: Location?) {
+        guard let location = at else { return nil }
+        
         self.teamColor = teamColor
-        self.currentLocation = currentLocation
+        self.currentLocation = location
+        
+        if !createAvailable() {
+            return nil
+        }
     }
 }

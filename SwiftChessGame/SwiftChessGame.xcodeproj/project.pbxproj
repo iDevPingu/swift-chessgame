@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78143F5828646DFD001039A9 /* BoardPrepareTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78143F5728646DFD001039A9 /* BoardPrepareTest.swift */; };
 		782FF1172860D2D800685A53 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FF1162860D2D800685A53 /* Location.swift */; };
 		7834CD0A2860429500E4A387 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD092860429500E4A387 /* AppDelegate.swift */; };
 		7834CD0C2860429500E4A387 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD0B2860429500E4A387 /* SceneDelegate.swift */; };
@@ -20,7 +21,7 @@
 		7834CD3C28605CF700E4A387 /* Knight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD3B28605CF700E4A387 /* Knight.swift */; };
 		7834CD3E28605CFA00E4A387 /* Pawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD3D28605CFA00E4A387 /* Pawn.swift */; };
 		7834CD4128605D3F00E4A387 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD4028605D3F00E4A387 /* Board.swift */; };
-		7834CD4928605D8D00E4A387 /* SwiftChessGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD4828605D8D00E4A387 /* SwiftChessGameTests.swift */; };
+		7834CD4928605D8D00E4A387 /* ChessPiecePrepareTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD4828605D8D00E4A387 /* ChessPiecePrepareTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		78143F5728646DFD001039A9 /* BoardPrepareTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPrepareTest.swift; sourceTree = "<group>"; };
 		782FF1162860D2D800685A53 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		7834CD062860429500E4A387 /* SwiftChessGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChessGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7834CD092860429500E4A387 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +52,7 @@
 		7834CD3D28605CFA00E4A387 /* Pawn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pawn.swift; sourceTree = "<group>"; };
 		7834CD4028605D3F00E4A387 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		7834CD4628605D8D00E4A387 /* SwiftChessGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChessGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7834CD4828605D8D00E4A387 /* SwiftChessGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftChessGameTests.swift; sourceTree = "<group>"; };
+		7834CD4828605D8D00E4A387 /* ChessPiecePrepareTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessPiecePrepareTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +131,8 @@
 		7834CD4728605D8D00E4A387 /* SwiftChessGameTests */ = {
 			isa = PBXGroup;
 			children = (
-				7834CD4828605D8D00E4A387 /* SwiftChessGameTests.swift */,
+				78143F5728646DFD001039A9 /* BoardPrepareTest.swift */,
+				7834CD4828605D8D00E4A387 /* ChessPiecePrepareTest.swift */,
 			);
 			path = SwiftChessGameTests;
 			sourceTree = "<group>";
@@ -252,7 +255,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7834CD4928605D8D00E4A387 /* SwiftChessGameTests.swift in Sources */,
+				78143F5828646DFD001039A9 /* BoardPrepareTest.swift in Sources */,
+				7834CD4928605D8D00E4A387 /* ChessPiecePrepareTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
