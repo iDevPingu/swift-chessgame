@@ -7,21 +7,44 @@
 
 import Foundation
 
-final class Location {
-    private var rank: Character
-    private var file: Int
+extension Location: Hashable {
+    static func == (lhs: Location, rhs: Location) -> Bool {
+        return (lhs.file == rhs.file) && (lhs.rank == rhs.rank)
+    }
     
-    var string: String { "\(rank)\(file)" }
-    var current: (rank: Int, file: Int)? {
-        let stringValue = Int(("A" as UnicodeScalar).value)
-        guard let rankAsciiValue = rank.asciiValue else { return nil }
-        return (Int(rankAsciiValue) - stringValue, self.file - 1)
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(file)
+        hasher.combine(rank)
+    }
+}
+
+extension Location: Comparable {
+    static func < (lhs: Location, rhs: Location) -> Bool {
+        return lhs.string < rhs.string
+    }
+}
+
+final class Location {
+    private(set) var rank: Int
+    private(set) var file: Int
+    
+    var string: String {
+        let aAsciiValue = Int(("A" as UnicodeScalar).value)
+        guard let rankAsCharacter = UnicodeScalar(rank + aAsciiValue) else { return "" }
+        return "\(rankAsCharacter)\(file)"
+    }
+    var current: (rank: Int, file: Int) {
+        return (rank, file - 1)
     }
     
     init?(string: String) {
         if Self.available(location: string) {
             guard let file = Int(String(string[string.index(string.startIndex, offsetBy: 1)])) else { return nil }
-            self.rank = string[string.startIndex]
+            let aAsciiValue = Int(("A" as UnicodeScalar).value)
+            let rankCharacter = string[string.startIndex]
+            guard let rankAsciiValue = rankCharacter.asciiValue else { return nil }
+            
+            self.rank = Int(rankAsciiValue) - aAsciiValue
             self.file = file
         } else {
             return nil
@@ -30,9 +53,7 @@ final class Location {
     
     init?(col: Int, row: Int) {
         if Self.available(col: col, row: row) {
-            let stringValue = Int(("A" as UnicodeScalar).value)
-            guard let unicodeScalar = UnicodeScalar(stringValue + row) else { return nil }
-            self.rank = Character(unicodeScalar)
+            self.rank = row
             self.file = col + 1
         } else {
             return nil
@@ -57,22 +78,7 @@ final class Location {
     
     private static func available(col: Int, row: Int) -> Bool {
         guard row >= 0, row <= 7 else { return false }
-        guard col >= 0, row <= 7 else { return false }
+        guard col >= 0, col <= 7 else { return false }
         return true
-    }
-    
-    func moveAvailable(pieceType: PieceType) -> [Location] {
-        switch pieceType {
-        case .queen:
-            return []
-        case .rook:
-            return []
-        case .bishop:
-            return []
-        case .knight:
-            return []
-        case .pawn:
-            return []
-        }
     }
 }
