@@ -12,25 +12,6 @@ final class Board {
     
     var current: [[ChessPiece?]] = []
     private var currentTurn: TeamColor = .black
-    private var currentStateAsString: [String] {
-        var returnValue: [String] = []
-        
-        for rank in 0..<Self.boardSize {
-            var currentRankString: String = ""
-            
-            for file in 0..<Self.boardSize {
-                if let piece = current[rank][file] {
-                    currentRankString += piece.pieceType.getString(teamColor: piece.teamColor)
-                } else {
-                    currentRankString += "."
-                }
-            }
-            
-            returnValue.append(currentRankString)
-        }
-        
-        return returnValue
-    }
     
     var blackTeamScore: Int {
         var blackTeamScore: Int = 0
@@ -109,7 +90,7 @@ final class Board {
         setBlackPieces()
         setWhitePieces()
         print("체스 보드를 초기화했습니다.")
-        display()
+        displayPretty()
     }
     
     func printScore() {
@@ -117,10 +98,31 @@ final class Board {
         print("White Team Score: \(whiteTeamScore)")
     }
     
-    func display() {
+    func display() -> [String] {
+        var returnValue: [String] = []
+        
+        for rank in 0..<Self.boardSize {
+            var currentRankString: String = ""
+            
+            for file in 0..<Self.boardSize {
+                if let piece = current[rank][file] {
+                    currentRankString += piece.pieceType.getString(teamColor: piece.teamColor)
+                } else {
+                    currentRankString += "."
+                }
+            }
+            
+            returnValue.append(currentRankString)
+        }
+        
+        return returnValue
+    }
+    
+    func displayPretty() {
+        let display = display()
         print(" ABCDEFGH")
-        for count in 0..<currentStateAsString.count {
-            print("\(count+1)\(currentStateAsString[count])")
+        for count in 0..<display.count {
+            print("\(count+1)\(display[count])")
         }
         print(" ABCDEFGH")
     }

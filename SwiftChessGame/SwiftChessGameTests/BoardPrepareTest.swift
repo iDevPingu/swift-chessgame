@@ -18,4 +18,19 @@ class BoardPrepareTest: XCTestCase {
         XCTAssertEqual(initScore, board.whiteTeamScore)
         XCTAssertEqual(initScore, board.blackTeamScore)
     }
+
+    func testBoardDisplay() throws {
+        let displayText = """
+        ♜♞♝.♛♝♞♜
+        ♟♟♟♟♟♟♟♟
+        ........
+        ........
+        ........
+        ........
+        ♙♙♙♙♙♙♙♙
+        ♖♘♗.♕♗♘♖
+        """
+        
+        XCTAssertEqual(board.display().joined(separator: "\n"), displayText)
+    }
 }
