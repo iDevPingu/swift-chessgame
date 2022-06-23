@@ -1,5 +1,5 @@
 //
-//  SwiftChessGameTests.swift
+//  ChessPieceInitializeTest.swift
 //  SwiftChessGameTests
 //
 //  Created by pingu.hwang on 2022/06/20.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import SwiftChessGame
 
-class SwiftChessGameTests: XCTestCase {
+class ChessPieceInitializeTest: XCTestCase {
     
     func testWhiteQueenCreate() {
         let createSuccessWhiteQueen = ChessPieceFactory.create(teamColor: .white, location: .init(string: "E8"), pieceType: .queen)

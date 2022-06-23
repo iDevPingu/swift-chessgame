@@ -1,5 +1,5 @@
 //
-//  BoardPrepareTest.swift
+//  BoardInitializeTest.swift
 //  SwiftChessGameTests
 //
 //  Created by pingu.hwang on 2022/06/23.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import SwiftChessGame
 
-class BoardPrepareTest: XCTestCase {
+class BoardInitializeTest: XCTestCase {
 
     let board = Board()
     
