@@ -8,15 +8,58 @@
 import Foundation
 
 final class Board {
-    var current: [[ChessPiece?]]
+    static var boardSize: Int = 8
+    
+    var current: [[ChessPiece?]] = []
     private var currentTurn: TeamColor = .black
+    private var currentStateAsString: [String] {
+        var returnValue: [String] = []
+        
+        for rank in 0..<Self.boardSize {
+            var currentRankString: String = ""
+            
+            for file in 0..<Self.boardSize {
+                if let piece = current[rank][file] {
+                    currentRankString += piece.pieceType.getString(teamColor: piece.teamColor)
+                } else {
+                    currentRankString += "."
+                }
+            }
+            
+            returnValue.append(currentRankString)
+        }
+        
+        return returnValue
+    }
+    
+    var blackTeamScore: Int {
+        var blackTeamScore: Int = 0
+        
+        for file in 0..<Self.boardSize {
+            for rank in 0..<Self.boardSize {
+                guard let chessPiece = current[file][rank],
+                      chessPiece.teamColor == .black else { continue }
+                blackTeamScore += chessPiece.score
+            }
+        }
+        return blackTeamScore
+    }
+    
+    var whiteTeamScore: Int {
+        var whiteTeamScore: Int = 0
+        
+        for file in 0..<Self.boardSize {
+            for rank in 0..<Self.boardSize {
+                guard let chessPiece = current[file][rank],
+                      chessPiece.teamColor == .white else { continue }
+                whiteTeamScore += chessPiece.score
+            }
+        }
+        return whiteTeamScore
+    }
     
     init() {
-        current = [[ChessPiece?]](repeating: [ChessPiece?](repeating: nil, count: 8), count: 8)
-        setBlackPieces()
-        setWhitePieces()
-        print("체스 보드를 초기화했습니다.")
-        print(display)
+        resetBoard()
     }
     
     private func setBlackPieces() {
@@ -59,54 +102,26 @@ final class Board {
         current[7] = whiteQueenRow
     }
     
-    var display: [String] {
-        var returnValue: [String] = []
-        
-        for rank in 0..<current.count {
-            var currentRankString: String = "\(rank+1)"
-            
-            for file in 0..<current[rank].count {
-                if let piece = current[rank][file] {
-                    currentRankString += piece.pieceType.getString(teamColor: piece.teamColor)
-                } else {
-                    currentRankString += "."
-                }
-            }
-            
-            returnValue.append(currentRankString)
-        }
-        
-        return returnValue
-    }
-    
-    var blackTeamScore: Int {
-        var blackTeamScore: Int = 0
-        
-        for file in 0..<current.count {
-            for rank in 0..<current[file].count {
-                guard let chessPiece = current[file][rank],
-                      chessPiece.teamColor == .black else { continue }
-                blackTeamScore += chessPiece.score
-            }
-        }
-        return blackTeamScore
-    }
-    
-    var whiteTeamScore: Int {
-        var whiteTeamScore: Int = 0
-        
-        for file in 0..<current.count {
-            for rank in 0..<current[file].count {
-                guard let chessPiece = current[file][rank],
-                      chessPiece.teamColor == .white else { continue }
-                whiteTeamScore += chessPiece.score
-            }
-        }
-        return whiteTeamScore
+    func resetBoard() {
+        current.removeAll()
+        current = [[ChessPiece?]](repeating: [ChessPiece?](repeating: nil, count: 8), count: 8)
+        currentTurn = .black
+        setBlackPieces()
+        setWhitePieces()
+        print("체스 보드를 초기화했습니다.")
+        display()
     }
     
     func printScore() {
         print("Black Team Score: \(blackTeamScore)")
         print("White Team Score: \(whiteTeamScore)")
+    }
+    
+    func display() {
+        print(" ABCDEFGH")
+        for count in 0..<currentStateAsString.count {
+            print("\(count+1)\(currentStateAsString[count])")
+        }
+        print(" ABCDEFGH")
     }
 }
