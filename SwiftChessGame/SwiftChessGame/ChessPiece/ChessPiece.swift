@@ -71,7 +71,7 @@ enum TeamColor {
     case black
 }
 
-protocol ChessPiece {
+protocol ChessPiece: AnyObject {
     var teamColor: TeamColor { get set }
     var currentLocation: Location { get set }
     var pieceType: PieceType { get }
@@ -135,10 +135,7 @@ extension ChessPiece {
                 returnValue = currentLocation.boardIndex.file == 6 && Array(0...7).contains(currentLocation.boardIndex.rank)
             }
         }
-        
-        if returnValue == false {
-            print(currentLocation.string)
-        }
+
         return returnValue
     }
     
@@ -200,6 +197,124 @@ extension ChessPiece {
         }
         
         return []
+    }
+}
+
+// For Moving
+extension ChessPiece {
+    func move(to: Location) {
+        currentLocation = to
+    }
+    
+    func getRoute(to: Location?) -> [Location] {
+        guard let to = to else { return [] }
+        guard currentMoveableLocation.contains(to) else { return [] }
+
+        switch pieceType {
+        case .queen:
+            if currentLocation.rank != to.rank && currentLocation.file != to.file {
+                return getDiagonalRoute(to: to)
+            } else {
+                return getStraightRoute(to: to)
+            }
+        case .rook:
+            return getStraightRoute(to: to)
+        case .bishop:
+            return getDiagonalRoute(to: to)
+        case .knight:
+            return getKnightRoute(to: to)
+        case .pawn:
+            return [to]
+        }
+    }
+    
+    private func getStraightRoute(to: Location) -> [Location] {
+        var returnValue: [Location] = []
+        let currentPoint = currentLocation.boardIndex
+        if currentLocation.rank == to.rank {
+            let isGoDown: Bool = currentLocation.file < to.file
+            for count in 1..<8 {
+                if let location = Location(col: currentPoint.file + (count * (isGoDown ? 1 : -1)), row: currentPoint.rank) {
+                    returnValue.append(location)
+                    
+                    if location == to {
+                        break
+                    }
+                }
+            }
+        } else if currentLocation.file == to.file {
+            let isGoRight: Bool = currentLocation.rank < to.rank
+            for count in 1..<8 {
+                if let location = Location(col: currentPoint.file, row: currentPoint.rank + (count * (isGoRight ? 1 : -1))) {
+                    returnValue.append(location)
+                    
+                    if location == to {
+                        break
+                    }
+                }
+            }
+        }
+        return returnValue
+    }
+    
+    private func getDiagonalRoute(to: Location) -> [Location] {
+        var returnValue: [Location] = []
+        let currentPoint = currentLocation.boardIndex
+        let direction: (file: Int, rank: Int)
+        
+        if currentLocation.rank < to.rank && currentLocation.file < to.file {
+            // 오른쪽 아래
+            direction = (1, 1)
+        } else if currentLocation.rank > to.rank && currentLocation.file < to.file {
+            // 왼쪽 아래
+            direction = (1, -1)
+        } else if currentLocation.rank < to.rank && currentLocation.file > to.file {
+            // 오른쪽 위
+            direction = (-1, 1)
+        } else {
+            // 왼쪽 위
+            direction = (-1, -1)
+        }
+        
+        for count in 1..<8 {
+            if let location = Location(col: currentPoint.file + direction.file * count,
+                                       row: currentPoint.rank + direction.rank * count) {
+                returnValue.append(location)
+                if location == to {
+                    break
+                }
+            }
+        }
+        
+        return returnValue
+    }
+    
+    private func getKnightRoute(to: Location) -> [Location] {
+        var returnValue: [Location] = []
+        let currentPoint = currentLocation.boardIndex
+        let toPoint = to.boardIndex
+        
+        if currentPoint.file - toPoint.file == 2 {
+            if let location = Location(col: currentPoint.file - 1, row: currentPoint.rank) {
+                returnValue.append(location)
+            }
+        } else if currentPoint.file - toPoint.file == -2 {
+            if let location = Location(col: currentPoint.file + 1, row: currentPoint.rank) {
+                returnValue.append(location)
+            }
+        } else if currentPoint.rank - toPoint.rank == 2 {
+            if let location = Location(col: currentPoint.file, row: currentPoint.rank - 1) {
+                returnValue.append(location)
+            }
+        } else if currentPoint.rank - toPoint.rank == -2 {
+            if let location = Location(col: currentPoint.file, row: currentPoint.rank + 1) {
+                returnValue.append(location)
+            }
+        }
+          
+        returnValue.append(to)
+        
+        return returnValue
     }
 }
 

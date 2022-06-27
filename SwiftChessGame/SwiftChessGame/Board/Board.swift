@@ -139,4 +139,40 @@ final class Board {
     func chessPiece(at: Location?) -> ChessPiece? {
         return current[at]
     }
+    
+    func move(from: Location?, to: Location?) throws {
+        guard let from = from,
+              let to = to else { throw BoardError.locationError }
+        
+        guard let fromChessPiece = current[from] else { throw BoardError.emptyLocation }
+        guard fromChessPiece.currentMoveableLocation.contains(to) else { throw BoardError.notAvailableLocation }
+        for route in fromChessPiece.getRoute(to: to) {
+            guard route != to else { break }
+            if let chessPiece = current[route],
+               chessPiece.teamColor == fromChessPiece.teamColor {
+                throw BoardError.chessPieceInTheRoute
+            }
+        }
+        
+        let toChessPiece = current[to]
+        
+        if let toChessPiece = toChessPiece {
+            guard fromChessPiece.teamColor != toChessPiece.teamColor else { throw BoardError.moveToEqualTeamLocation }
+        }
+        
+        
+        current[from.boardIndex.file][from.boardIndex.rank] = nil
+        current[to.boardIndex.file][to.boardIndex.rank] = fromChessPiece
+        fromChessPiece.move(to: to)
+        
+        currentTurn = currentTurn == .black ? .white : .black
+    }
+}
+
+enum BoardError: Error {
+    case locationError
+    case notAvailableLocation
+    case emptyLocation
+    case moveToEqualTeamLocation
+    case chessPieceInTheRoute
 }

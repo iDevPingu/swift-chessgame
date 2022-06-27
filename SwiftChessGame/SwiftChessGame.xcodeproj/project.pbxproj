@@ -23,6 +23,7 @@
 		7834CD4128605D3F00E4A387 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD4028605D3F00E4A387 /* Board.swift */; };
 		7834CD4928605D8D00E4A387 /* ChessPieceInitializeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD4828605D8D00E4A387 /* ChessPieceInitializeTest.swift */; };
 		78C2446828699C980000F942 /* BoardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C2446728699C980000F942 /* BoardTest.swift */; };
+		78C2446A2869D3F60000F942 /* ChessPieceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C244692869D3F60000F942 /* ChessPieceTest.swift */; };
 		78EA48B928647F4500D527FF /* LocationInitializeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EA48B828647F4500D527FF /* LocationInitializeTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		7834CD4628605D8D00E4A387 /* SwiftChessGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChessGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7834CD4828605D8D00E4A387 /* ChessPieceInitializeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessPieceInitializeTest.swift; sourceTree = "<group>"; };
 		78C2446728699C980000F942 /* BoardTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTest.swift; sourceTree = "<group>"; };
+		78C244692869D3F60000F942 /* ChessPieceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessPieceTest.swift; sourceTree = "<group>"; };
 		78EA48B828647F4500D527FF /* LocationInitializeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInitializeTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 				78143F5728646DFD001039A9 /* BoardInitializeTest.swift */,
 				78C2446728699C980000F942 /* BoardTest.swift */,
 				7834CD4828605D8D00E4A387 /* ChessPieceInitializeTest.swift */,
+				78C244692869D3F60000F942 /* ChessPieceTest.swift */,
 				78EA48B828647F4500D527FF /* LocationInitializeTest.swift */,
 			);
 			path = SwiftChessGameTests;
@@ -263,6 +266,7 @@
 			files = (
 				78143F5828646DFD001039A9 /* BoardInitializeTest.swift in Sources */,
 				7834CD4928605D8D00E4A387 /* ChessPieceInitializeTest.swift in Sources */,
+				78C2446A2869D3F60000F942 /* ChessPieceTest.swift in Sources */,
 				78C2446828699C980000F942 /* BoardTest.swift in Sources */,
 				78EA48B928647F4500D527FF /* LocationInitializeTest.swift in Sources */,
 			);
