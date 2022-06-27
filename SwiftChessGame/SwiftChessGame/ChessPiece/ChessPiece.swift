@@ -130,9 +130,9 @@ extension ChessPiece {
             }
         case .pawn:
             if teamColor == .black {
-                returnValue = currentLocation.file == 2 && Array(0...7).contains(currentLocation.rank)
+                returnValue = currentLocation.boardIndex.file == 1 && Array(0...7).contains(currentLocation.boardIndex.rank)
             } else {
-                returnValue = currentLocation.file == 7 && Array(0...7).contains(currentLocation.rank)
+                returnValue = currentLocation.boardIndex.file == 6 && Array(0...7).contains(currentLocation.boardIndex.rank)
             }
         }
         
@@ -143,7 +143,7 @@ extension ChessPiece {
     }
     
     private func getAvailableDiagonalMove(location: Location) -> [Location] {
-        let currentPoint = location.current
+        let currentPoint = location.boardIndex
         var returnValue: [Location] = []
         let directions: [(ud: Int,lr: Int)] = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
         
@@ -161,7 +161,7 @@ extension ChessPiece {
     }
     
     private func getAvailableStraigtMove(location: Location) -> [Location] {
-        let currentPoint = location.current
+        let currentPoint = location.boardIndex
         var returnValue: [Location] = []
         let directions: [(ud: Int, lr: Int)] = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         
@@ -178,7 +178,7 @@ extension ChessPiece {
     }
     
     private func getAvailableknightMove(location: Location) -> [Location] {
-        let currentPoint = location.current
+        let currentPoint = location.boardIndex
         var returnValue: [Location] = []
         let directions: [(ud: Int, lr: Int)] = [(-2, -1), (-2, 1), (-1, 2), (1, 2), (2, -1), (2, 1), (-1, -2), (1, -2)]
         
@@ -192,7 +192,7 @@ extension ChessPiece {
     }
     
     private func getAvailablePawnMove(location: Location, color: TeamColor) -> [Location] {
-        let currentPoint = location.current
+        let currentPoint = location.boardIndex
         
         let newFile = currentPoint.file + (color == .black ? 1 : -1)
         if let location = Location(col: newFile, row: currentPoint.rank) {

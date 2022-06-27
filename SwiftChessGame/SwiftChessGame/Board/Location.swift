@@ -33,7 +33,8 @@ final class Location {
         guard let rankAsCharacter = UnicodeScalar(rank + aAsciiValue) else { return "" }
         return "\(rankAsCharacter)\(file)"
     }
-    var current: (rank: Int, file: Int) {
+    
+    var boardIndex: (rank: Int, file: Int) {
         return (rank, file - 1)
     }
     

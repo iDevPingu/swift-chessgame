@@ -7,10 +7,19 @@
 
 import Foundation
 
+extension Array {
+    subscript(location: Location?) -> ChessPiece? {
+        guard let location = location else { return nil }
+        guard let file = self[location.boardIndex.file] as? [ChessPiece?] else { return nil }
+        
+        return file[location.boardIndex.rank]
+    }
+}
+
 final class Board {
     static var boardSize: Int = 8
     
-    var current: [[ChessPiece?]] = []
+    private var current: [[ChessPiece?]] = []
     private var currentTurn: TeamColor = .black
     
     var blackTeamScore: Int {
@@ -125,5 +134,9 @@ final class Board {
             print("\(count+1)\(display[count])")
         }
         print(" ABCDEFGH")
+    }
+    
+    func chessPiece(at: Location?) -> ChessPiece? {
+        return current[at]
     }
 }
