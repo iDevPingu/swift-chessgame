@@ -21,29 +21,34 @@ extension BoardViewModel: UICollectionViewDelegate {
                 from = location
                 collectionView.reloadData()
             } else {
-                // 해당 말의 차례가 아님을 알려야함
-                print("해당 말 차례가 아님")
+                presentAlert(message: "해당 팀의 차례가 아닙니다.")
             }
         } else {
-            do {
-                try board.move(from: from, to: Location.create(with: indexPath))
+            if from == Location.create(with: indexPath) {
                 from = nil
                 collectionView.reloadData()
-            } catch {
-                guard let error = error as? BoardError else { return }
-                switch error {
-                case .locationError:
-                    print("locationError")
-                case .notAvailableLocation:
-                    print("notAvailableLocation")
-                case .emptyLocation:
-                    print("emptyLocation")
-                case .moveToEqualTeamLocation:
-                    print("moveToEqualTeamLocation")
-                case .chessPieceInTheRoute:
-                    print("chessPieceInTheRoute")
+                return
+            } else {
+                do {
+                    try board.move(from: from, to: Location.create(with: indexPath))
+                    from = nil
+                    collectionView.reloadData()
+                } catch {
+                    guard let error = error as? BoardError else { return }
+                    presentAlert(message: error.message)
                 }
             }
+        }
+    }
+    
+    private func presentAlert(message: String) {
+        let alertController = UIAlertController(title: "에러", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        alertController.addAction(okAction)
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let delegate = windowScene.delegate as? SceneDelegate {
+            delegate.window?.rootViewController?.present(alertController, animated: true)
         }
     }
 }

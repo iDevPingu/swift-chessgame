@@ -203,4 +203,19 @@ enum BoardError: Error {
     case emptyLocation
     case moveToEqualTeamLocation
     case chessPieceInTheRoute
+    
+    var message: String {
+        switch self {
+        case .locationError:
+            return "이상한 위치입니다."
+        case .notAvailableLocation:
+            return "이동할 수 없는 위치입니다."
+        case .emptyLocation:
+            return "해당 위치엔 체스말이 없습니다."
+        case .moveToEqualTeamLocation:
+            return "해당 위치는 같은팀 체스말이 이미 존재합니다."
+        case .chessPieceInTheRoute:
+            return "해당 위치로 가는 경로에 같은팀 체스말이 존재합니다."
+        }
+    }
 }
