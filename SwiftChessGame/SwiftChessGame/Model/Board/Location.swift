@@ -61,6 +61,13 @@ final class Location {
         }
     }
     
+    static func create(with: IndexPath) -> Location? {
+        let col = with.item % 8
+        let row = with.item / 8
+        
+        return Location(col: col, row: row)
+    }
+    
     private static func available(location: String) -> Bool {
         guard location.count == 2 else { return false }
         let rank = location[location.startIndex]

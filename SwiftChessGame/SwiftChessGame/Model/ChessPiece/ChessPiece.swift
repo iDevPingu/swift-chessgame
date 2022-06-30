@@ -66,9 +66,9 @@ enum PieceType {
     }
 }
 
-enum TeamColor {
-    case white
-    case black
+enum TeamColor: String {
+    case white = "White"
+    case black = "Black"
 }
 
 protocol ChessPiece: AnyObject {

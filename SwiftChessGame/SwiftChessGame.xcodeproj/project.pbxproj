@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		78143F5828646DFD001039A9 /* BoardInitializeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78143F5728646DFD001039A9 /* BoardInitializeTest.swift */; };
+		7816A8C5286D94C100263251 /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7816A8C4286D94C100263251 /* BoardViewModel.swift */; };
+		7816A8C7286DAC5400263251 /* ChessPieceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7816A8C6286DAC5400263251 /* ChessPieceCell.swift */; };
 		782FF1172860D2D800685A53 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FF1162860D2D800685A53 /* Location.swift */; };
 		7834CD0A2860429500E4A387 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD092860429500E4A387 /* AppDelegate.swift */; };
 		7834CD0C2860429500E4A387 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD0B2860429500E4A387 /* SceneDelegate.swift */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		78143F5728646DFD001039A9 /* BoardInitializeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardInitializeTest.swift; sourceTree = "<group>"; };
+		7816A8C4286D94C100263251 /* BoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
+		7816A8C6286DAC5400263251 /* ChessPieceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessPieceCell.swift; sourceTree = "<group>"; };
 		782FF1162860D2D800685A53 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		7834CD062860429500E4A387 /* SwiftChessGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChessGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7834CD092860429500E4A387 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +85,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7816A8C8286DAC6A00263251 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7834CD3F28605D3B00E4A387 /* Board */,
+				7834CD1D2860462A00E4A387 /* ChessPiece */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7816A8C9286DAC7900263251 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7816A8C4286D94C100263251 /* BoardViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7834CCFD2860429500E4A387 = {
 			isa = PBXGroup;
 			children = (
@@ -102,9 +123,9 @@
 		7834CD082860429500E4A387 /* SwiftChessGame */ = {
 			isa = PBXGroup;
 			children = (
-				7834CD3F28605D3B00E4A387 /* Board */,
-				7834CD1D2860462A00E4A387 /* ChessPiece */,
+				7816A8C8286DAC6A00263251 /* Model */,
 				78C2446B2869FF2D0000F942 /* View */,
+				7816A8C9286DAC7900263251 /* ViewModel */,
 				78C2446E2869FFA20000F942 /* BoardViewController.swift */,
 				7834CD092860429500E4A387 /* AppDelegate.swift */,
 				7834CD0B2860429500E4A387 /* SceneDelegate.swift */,
@@ -153,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				78C2446C2869FF600000F942 /* BoardView.swift */,
+				7816A8C6286DAC5400263251 /* ChessPieceCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -260,7 +282,9 @@
 				782FF1172860D2D800685A53 /* Location.swift in Sources */,
 				7834CD3A28605CF300E4A387 /* Bishop.swift in Sources */,
 				7834CD4128605D3F00E4A387 /* Board.swift in Sources */,
+				7816A8C7286DAC5400263251 /* ChessPieceCell.swift in Sources */,
 				7834CD3628605CDC00E4A387 /* Queen.swift in Sources */,
+				7816A8C5286D94C100263251 /* BoardViewModel.swift in Sources */,
 				7834CD3828605CE600E4A387 /* Rook.swift in Sources */,
 				7834CD3C28605CF700E4A387 /* Knight.swift in Sources */,
 				7834CD0A2860429500E4A387 /* AppDelegate.swift in Sources */,

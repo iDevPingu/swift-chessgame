@@ -5,53 +5,31 @@
 //  Created by pingu.hwang on 2022/06/28.
 //
 
+import Combine
 import UIKit
 
-class BoardView: UIStackView {
-    var board: Board
+class BoardView: UICollectionView {
+    static let headerViewHeight: CGFloat = 40.0
+    static let footerViewHeight: CGFloat = 40.0
     
-    // 임시
-    private var boardFile: [UIStackView] = []
-    private var chessPieceView: [[UIButton]] = []
+    private var cancellables = Set<AnyCancellable>()
     
-    init(board: Board) {
-        self.board = board
-        super.init(frame: .zero)
-        translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .lightGray
-        spacing = 0
-        axis = .vertical
-        distribution = .fillEqually
-        
-        setBoardFile()
-        setChessPieceView()
+    let myView = UIView(frame: .zero)
+    
+    init(viewModel: BoardViewModel) {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        super.init(frame: .zero, collectionViewLayout: layout)
+        delegate = viewModel
+        dataSource = viewModel
+        showsVerticalScrollIndicator = false
+        showsHorizontalScrollIndicator = false
+        register(ChessPieceCell.self, forCellWithReuseIdentifier: ChessPieceCell.identifier)
     }
     
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setBoardFile() {
-        for _ in 0..<Board.boardSize {
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.spacing = 0
-            stackView.distribution = .fillEqually
-            addArrangedSubview(stackView)
-            boardFile.append(stackView)
-        }
-    }
-    
-    private func setChessPieceView() {
-        for file in 0..<Board.boardSize {
-            for rank in 0..<Board.boardSize {
-                let button = UIButton()
-                if let location = Location(col: file, row: rank),
-                   let chessPiece = board.chessPiece(at: location) {
-                    button.setTitle(chessPiece.pieceType.getString(teamColor: chessPiece.teamColor), for: .normal)
-                }
-                boardFile[file].addArrangedSubview(button)
-            }
-        }
     }
 }

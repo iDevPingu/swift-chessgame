@@ -102,6 +102,10 @@ final class Board {
         displayPretty()
     }
     
+    func checkTurn(with: ChessPiece?) -> Bool {
+        return with?.teamColor == currentTurn
+    }
+    
     func printScore() {
         print("Black Team Score: \(blackTeamScore)")
         print("White Team Score: \(whiteTeamScore)")
@@ -166,6 +170,30 @@ final class Board {
         fromChessPiece.move(to: to)
         
         currentTurn = currentTurn == .black ? .white : .black
+    }
+    
+    func isMoveAvailable(from: Location?, to: Location?) -> Bool {
+        guard let from = from, let to = to,
+              let fromChessPiece = chessPiece(at: from) else { return false }
+        
+        if fromChessPiece.currentMoveableLocation.contains(to) == false {
+            return false
+        } else {
+            var chessPieceInTheRoute: Bool = false
+            for route in fromChessPiece.getRoute(to: to) {
+                guard !chessPieceInTheRoute else { return false }
+                
+                if let chessPiece = current[route] {
+                    if chessPiece.teamColor == fromChessPiece.teamColor {
+                        return false
+                    } else {
+                        chessPieceInTheRoute = true
+                    }
+                }
+            }
+        }
+        
+        return true
     }
 }
 
