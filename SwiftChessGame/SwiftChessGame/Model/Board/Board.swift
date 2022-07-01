@@ -21,8 +21,7 @@ final class Board {
     
     private var current: [[ChessPiece?]] = []
     private var currentTurn: TeamColor = .black
-    
-    var blackTeamScore: Int {
+    private var blackTeamScore: Int {
         var blackTeamScore: Int = 0
         
         for file in 0..<Self.boardSize {
@@ -35,7 +34,7 @@ final class Board {
         return blackTeamScore
     }
     
-    var whiteTeamScore: Int {
+    private var whiteTeamScore: Int {
         var whiteTeamScore: Int = 0
         
         for file in 0..<Self.boardSize {
@@ -47,6 +46,9 @@ final class Board {
         }
         return whiteTeamScore
     }
+    
+    public var currentTurnInfo: String { currentTurn.rawValue }
+    public var score: (black: Int, white: Int) { (blackTeamScore, whiteTeamScore) }
     
     init() {
         resetBoard()
@@ -104,11 +106,6 @@ final class Board {
     
     func checkTurn(with: ChessPiece?) -> Bool {
         return with?.teamColor == currentTurn
-    }
-    
-    func printScore() {
-        print("Black Team Score: \(blackTeamScore)")
-        print("White Team Score: \(whiteTeamScore)")
     }
     
     func display() -> [String] {

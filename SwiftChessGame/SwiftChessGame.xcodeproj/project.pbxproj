@@ -23,6 +23,7 @@
 		7834CD3E28605CFA00E4A387 /* Pawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD3D28605CFA00E4A387 /* Pawn.swift */; };
 		7834CD4128605D3F00E4A387 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD4028605D3F00E4A387 /* Board.swift */; };
 		7834CD4928605D8D00E4A387 /* ChessPieceInitializeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CD4828605D8D00E4A387 /* ChessPieceInitializeTest.swift */; };
+		78786BE5286DFFDC00533888 /* BoardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78786BE4286DFFDC00533888 /* BoardInfoView.swift */; };
 		78C2446828699C980000F942 /* BoardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C2446728699C980000F942 /* BoardTest.swift */; };
 		78C2446A2869D3F60000F942 /* ChessPieceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C244692869D3F60000F942 /* ChessPieceTest.swift */; };
 		78C2446D2869FF600000F942 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C2446C2869FF600000F942 /* BoardView.swift */; };
@@ -60,6 +61,7 @@
 		7834CD4028605D3F00E4A387 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		7834CD4628605D8D00E4A387 /* SwiftChessGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChessGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7834CD4828605D8D00E4A387 /* ChessPieceInitializeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessPieceInitializeTest.swift; sourceTree = "<group>"; };
+		78786BE4286DFFDC00533888 /* BoardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardInfoView.swift; sourceTree = "<group>"; };
 		78C2446728699C980000F942 /* BoardTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTest.swift; sourceTree = "<group>"; };
 		78C244692869D3F60000F942 /* ChessPieceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessPieceTest.swift; sourceTree = "<group>"; };
 		78C2446C2869FF600000F942 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				78C2446C2869FF600000F942 /* BoardView.swift */,
+				78786BE4286DFFDC00533888 /* BoardInfoView.swift */,
 				7816A8C6286DAC5400263251 /* ChessPieceCell.swift */,
 			);
 			path = View;
@@ -287,6 +290,7 @@
 				7816A8C5286D94C100263251 /* BoardViewModel.swift in Sources */,
 				7834CD3828605CE600E4A387 /* Rook.swift in Sources */,
 				7834CD3C28605CF700E4A387 /* Knight.swift in Sources */,
+				78786BE5286DFFDC00533888 /* BoardInfoView.swift in Sources */,
 				7834CD0A2860429500E4A387 /* AppDelegate.swift in Sources */,
 				7834CD0C2860429500E4A387 /* SceneDelegate.swift in Sources */,
 				78C2446D2869FF600000F942 /* BoardView.swift in Sources */,

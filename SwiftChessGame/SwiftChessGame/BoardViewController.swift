@@ -23,9 +23,8 @@ class BoardViewController: UIViewController {
             boardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             boardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             boardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            boardView.heightAnchor.constraint(equalTo: view.widthAnchor),
             boardView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            boardView.heightAnchor.constraint(equalTo: view.widthAnchor)
+            boardView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width + BoardInfoView.viewHeight)
         ])
     }
 }

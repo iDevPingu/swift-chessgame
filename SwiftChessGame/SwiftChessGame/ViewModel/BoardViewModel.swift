@@ -5,11 +5,32 @@
 //  Created by pingu.hwang on 2022/06/30.
 //
 
+import Combine
 import UIKit
 
 final class BoardViewModel: NSObject {
     private let board = Board()
     private var from: Location?
+    @Published var infoPublisher = PassthroughSubject<(turnInfo: String,scoreInfo: String), Never>()
+    var turnInfoText: String {
+        return "Turn: \(board.currentTurnInfo) Team 차례"
+    }
+    
+    var scoreInfoText: String {
+        let score = board.score
+        return "Black: \(score.black), \(score.white): White"
+    }
+    
+    private func presentAlert(message: String) {
+        let alertController = UIAlertController(title: "에러", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        alertController.addAction(okAction)
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let delegate = windowScene.delegate as? SceneDelegate {
+            delegate.window?.rootViewController?.present(alertController, animated: true)
+        }
+    }
 }
 
 extension BoardViewModel: UICollectionViewDelegate {
@@ -20,6 +41,7 @@ extension BoardViewModel: UICollectionViewDelegate {
             if board.checkTurn(with: board.chessPiece(at: location)) {
                 from = location
                 collectionView.reloadData()
+                infoPublisher.send((turnInfoText, scoreInfoText))
             } else {
                 presentAlert(message: "해당 팀의 차례가 아닙니다.")
             }
@@ -33,22 +55,12 @@ extension BoardViewModel: UICollectionViewDelegate {
                     try board.move(from: from, to: Location.create(with: indexPath))
                     from = nil
                     collectionView.reloadData()
+                    infoPublisher.send((turnInfoText, scoreInfoText))
                 } catch {
                     guard let error = error as? BoardError else { return }
                     presentAlert(message: error.message)
                 }
             }
-        }
-    }
-    
-    private func presentAlert(message: String) {
-        let alertController = UIAlertController(title: "에러", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default)
-        alertController.addAction(okAction)
-        
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let delegate = windowScene.delegate as? SceneDelegate {
-            delegate.window?.rootViewController?.present(alertController, animated: true)
         }
     }
 }
