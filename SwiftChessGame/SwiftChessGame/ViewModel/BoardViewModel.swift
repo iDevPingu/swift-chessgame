@@ -83,9 +83,12 @@ extension BoardViewModel: UICollectionViewDataSource {
             cellBackgroundColor = indexPath.item % 2 == 0 ? .white : .systemBlue
         }
         
-        if let from = from,
-           board.isMoveAvailable(from: from, to: Location.create(with: indexPath)) {
-            cellBackgroundColor = .red
+        if let from = from {
+            if from == Location.create(with: indexPath) {
+                cellBackgroundColor = .yellow
+            } else if board.isMoveAvailable(from: from, to: Location.create(with: indexPath)) {
+                cellBackgroundColor = .red
+            }
         }
         
         cell.configure(with: board.chessPiece(at: location), backgroundColor: cellBackgroundColor)
